@@ -18,5 +18,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/SearchPigeon/', include(('SearchPigeon.api.urls', 'SearchPigeon'), namespace='SearchPigeon')),
+    path('api/SearchPigeon/', include(('SearchPigeon.api.urls', 'SearchPigeonAPI'), namespace='SearchPigeonAPI')),
+    path('SearchPigeon/', include(('SearchPigeon.urls', 'SearchPigeon'), namespace='SearchPigeon')),
 ]
