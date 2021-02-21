@@ -11,7 +11,7 @@ def get_brpfc_pigeons(ring):
     soup = BeautifulSoup(page.content, 'html.parser')
 
     table = soup.find_all('table')
-
+    df = pd.DataFrame()
     try:
         df = pd.read_html(str(table[1]))[0]
     except:

@@ -11,7 +11,11 @@ def get_arpcd_pigeons(ring):
     soup = BeautifulSoup(page.content, 'html.parser')
 
     table = soup.find_all('table')
-
-    df = pd.read_html(str(table[1]))[0]
+    df = pd.DataFrame()
+    try:
+        df = pd.read_html(str(table[1]))[0]
+    except:
+        df = pd.DataFrame()
+        print('get_brpoa_pigeons NOT FOUND',ring)
 
     return df
