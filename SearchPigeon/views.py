@@ -9,7 +9,7 @@ from SearchPigeon.models import pigeon
 
 
 def ARPCD(request):
-    for i in range(1257,6000):
+    for i in range(6000,6000):
         arcpd_df = get_arpcd_pigeons(i)
         print(i,'***************************************** ARPCD')
         for index, row in arcpd_df.iterrows():
@@ -32,31 +32,33 @@ def ARPCD(request):
     return HttpResponse('ARCPD DONE')
 
 def BRPFC(request):
-    for i in range(0,10):
+    for i in range(10,10):
         brpfc_df = get_brpfc_pigeons(i)
         print(i,'***************************************** BRPFC')
-        for index, row in brpfc_df.iterrows():
-            pg = pigeon.objects.filter(PigeonRingNumber= row['Pigeon Details...']['BAN'], PigeonVelocity= row['Pigeon Details...']['Velocity'], RaceDate=row['Date'])
-            if pg.count() == 0:
-                print(i, '###', row['Pigeon Details...']['Rank'], row['Pigeon Details...']['BAN'], row['Pigeon Details...']['Race Spot'], row['Pigeon Details...']['Name & ID'],
-                      'BRPFC', row['Pigeon Details...']['Velocity'], row['Pigeon Details...']['No Of Pigeon'], row['Pigeon Details...']['Date'], row['Pigeon Details...']['Distance [KM]'])
-                pigeon.objects.create(
-                    PigeonRingNumber = row['Pigeon Details...']['BAN'],
-                    Position = row['Pigeon Details...']['Rank'],
-                    RaceName = row['Pigeon Details...']['Race Spot'],
-                    OwnerName = row['Pigeon Details...']['Name & ID'],
-                    ClubName = 'BRPFC',
-                    PigeonVelocity = row['Pigeon Details...']['Velocity'],
-                    TotalPigeons = row['Pigeon Details...']['No Of Pigeon'],
-                    RaceDate = row['Pigeon Details...']['Date'],
-                    Distance = row['Pigeon Details...']['Distance [KM]'])
-            else:
-                print(i, '### EXISTS :: :: :: :: :: :: ')
+        print(brpfc_df.columns)
+        if not brpfc_df.empty:
+            for index, row in brpfc_df.iterrows():
+                pg = pigeon.objects.filter(PigeonRingNumber= row['Pigeon Details...']['BAN'], PigeonVelocity= row['Pigeon Details...']['Velocity'], RaceDate=row['Pigeon Details...']['Date'])
+                if pg.count() == 0:
+                    print(i, '###', row['Pigeon Details...']['Rank'], row['Pigeon Details...']['BAN'], row['Pigeon Details...']['Race Spot'], row['Pigeon Details...']['Name & ID'],
+                          'BRPFC', row['Pigeon Details...']['Velocity'], row['Pigeon Details...']['No of Pigeon'], row['Pigeon Details...']['Date'], row['Pigeon Details...']['Distance [KM]'])
+                    pigeon.objects.create(
+                        PigeonRingNumber = row['Pigeon Details...']['BAN'],
+                        Position = row['Pigeon Details...']['Rank'],
+                        RaceName = row['Pigeon Details...']['Race Spot'],
+                        OwnerName = row['Pigeon Details...']['Name & ID'],
+                        ClubName = 'BRPFC',
+                        PigeonVelocity = row['Pigeon Details...']['Velocity'],
+                        TotalPigeons = row['Pigeon Details...']['No of Pigeon'],
+                        RaceDate = row['Pigeon Details...']['Date'],
+                        Distance = row['Pigeon Details...']['Distance [KM]'])
+                else:
+                    print(i, '### EXISTS :: :: :: :: :: :: ')
 
     return HttpResponse('BRPFC DONE')
 
 def BRPOA(request):
-    for i in range(0,2):
+    for i in range(10,10):
         brpoa_df = get_brpoa_pigeons(i)
         print(brpoa_df.columns)
         print(i,'***************************************** BRPOA')

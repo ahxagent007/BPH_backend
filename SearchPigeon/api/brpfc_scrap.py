@@ -15,7 +15,7 @@ def get_brpfc_pigeons(ring):
     try:
         df = pd.read_html(str(table[1]))[0]
     except:
-        df = None
+        df = pd.DataFrame()
         print('get_brpfc_pigeons NOT FOUND',ring)
 
     return df
