@@ -1,6 +1,5 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view
-import pandas as pd
 from SearchPigeon.api.arpcd_scrap import get_arpcd_pigeons
 from SearchPigeon.api.brpfc_scrap import get_brpfc_pigeons
 from SearchPigeon.api.brpoa_scrap import get_brpoa_pigeons

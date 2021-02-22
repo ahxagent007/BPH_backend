@@ -17,3 +17,5 @@ six==1.15.0
 soupsieve==2.2
 sqlparse==0.4.1
 urllib3==1.26.3
+python-dotenv==0.15.0
+pymysql==1.0.2python manage.py
